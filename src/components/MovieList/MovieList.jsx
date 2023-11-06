@@ -22,7 +22,6 @@ const MovieList = () => {
         return (
           <div key={index}>
             <p>{data.title}</p>
-          
           </div>
         );
       })}
