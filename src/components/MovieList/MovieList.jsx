@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Images from "../Images/Images";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -22,6 +23,7 @@ const MovieList = () => {
         return (
           <div key={index}>
             <p>{data.title}</p>
+            <Images backdropPath={data.backdrop_path} />
           </div>
         );
       })}
