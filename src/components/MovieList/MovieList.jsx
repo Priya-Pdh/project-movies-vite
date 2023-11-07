@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Images from "../Images/Images";
+import { Link } from "react-router-dom";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -14,7 +15,6 @@ const MovieList = () => {
       .then((data) => {
         console.log(data);
         setMovies(data.results);
-       
       });
   }, []);
 
@@ -24,11 +24,12 @@ const MovieList = () => {
         return (
           <div key={index}>
             <p>{data.title}</p>
-            <Images backdropPath={data.backdrop_path}/>
+            <Link to={`/movieList/${data.id}`}>
+              <Images backdropPath={data.backdrop_path} />
+            </Link>
           </div>
         );
       })}
-     
     </div>
   );
 };
