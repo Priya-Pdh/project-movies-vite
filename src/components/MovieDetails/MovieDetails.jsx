@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const MovieDetails = () => {
-  const { id: movieId } = useParams();
-  const [movie, setMovie] = useState("");
+  const { movieId } = useParams();
+  const [movie, setMovie] = useState();
 
   const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
 
@@ -19,9 +19,12 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <h1>{movie.title}</h1>
-    </div>
+    movie && (
+      <>
+        <h1>{movie.title}</h1>
+        <img src={`https://image.tmdb.org/t/p/w780/${movie.backdrop_path}`} />
+      </>
+    )
   );
 };
 
