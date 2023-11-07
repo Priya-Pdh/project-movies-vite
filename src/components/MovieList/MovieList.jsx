@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
+import { FadeLoader } from "react-spinners";
+import "./MovieList.css";
+import LazyImage from "../LazyImage/LazyImage";
 import Images from "../Images/Images";
 import { Link } from "react-router-dom";
 
+
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
 
@@ -15,22 +20,32 @@ const MovieList = () => {
       .then((data) => {
         console.log(data);
         setMovies(data.results);
+        setLoading(false);
       });
   }, []);
 
   return (
-    <div>
-      {movies.map((data, index) => {
-        return (
-          <div key={index}>
-            <p>{data.title}</p>
-            <Link to={`/movieList/${data.id}`}>
-              <Images backdropPath={data.backdrop_path} />
-            </Link>
-          </div>
-        );
-      })}
-    </div>
+    <>
+      {loading ? (
+        <div className="loading-spinner">
+          <FadeLoader loading={loading} size={150} />{" "}
+        </div>
+      ) : null}
+      <div>
+        {movies.map((data, index) => {
+          return (
+            <div key={index}>
+              <p>{data.title}</p>
+ <Link to={`/movieList/${data.id}`}>
+              <LazyImage
+                backdropPath={data.backdrop_path}
+              />
+               </Link>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
