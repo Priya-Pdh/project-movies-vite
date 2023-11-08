@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./MovieDetails.css";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -26,7 +27,9 @@ const MovieDetails = () => {
   }
 
   //Destructuring of movie data
-  const { title, vote_average, genres, runtime, overview, production_companies, backdrop_path } = movie;
+  const { title, vote_average, genres, runtime, overview, production_companies, backdrop_path, poster_path } = movie;
+
+  const bgImg = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
 
   //Function to display runtime in hours and minutes
   const toHoursAndMinutes = (runtime) => {
@@ -38,21 +41,31 @@ const MovieDetails = () => {
   const convertMinutes = toHoursAndMinutes(runtime);
 
   return (
-    <>
-      <h1>{title}</h1>
-      <h2 className="rank">{vote_average.toFixed(1)}</h2>
-      {genres.map(({ id, name }) => (
-        <p key={id} className="genre">{name}</p>
-      ))}
-      <p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>
-      <p>{overview}</p>
-      {production_companies.map(({ id, name }) => (
-        <ul key={id}>
-          <li>{name}</li>
-        </ul>
-      ))}
-      <img src={`https://image.tmdb.org/t/p/w780/${backdrop_path}`} />
-    </>
+    <div>
+      <div className="bg-img" style={{ backgroundImage: `url(${bgImg})`, }}>
+        <div className="overlay"></div>
+        <div className="movie-content">
+          <img className="cover-img" src={`https://image.tmdb.org/t/p/w342${poster_path}`} />
+          <div className="rating-container">
+            <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
+          </div>
+          <div className="movie-info">
+            <h1>{title}</h1>
+            {genres.map(({ id, name }) => (
+              <button key={id} className="genre">{name}</button>
+            ))}
+            <p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>
+            <p>{overview}</p>
+            {/* {production_companies.map(({ id, name }) => (
+              <ul key={id}>
+                <li>{name}</li>
+              </ul>
+            ))} */}
+          </div>
+        </div>
+
+      </div>
+    </div>
   );
 };
 

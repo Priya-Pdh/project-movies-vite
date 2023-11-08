@@ -31,16 +31,18 @@ const MovieList = () => {
           <FadeLoader loading={loading} size={150} />{" "}
         </div>
       ) : null}
-      <div>
+      <div className="container">
         {/*Destructuring of the movies data*/}
-        {movies.map(({ id, title, release_date, backdrop_path }) => {
+        {movies.map(({ id, title, release_date, poster_path }) => {
           return (
-            <div key={id}>
-              <h1>{title}</h1>
-              <p>Released {release_date}</p>
+            <div key={id} className="movie-card">
               <Link to={`/movieList/${id}`}>
+                <div className="movie-details">
+                  <h1 className="text-margin">{title}</h1>
+                  <p className="text-margin">Released {release_date}</p>
+                </div>
                 <LazyImage
-                  backdropPath={backdrop_path}
+                  backdropPath={poster_path}
                 />
               </Link>
             </div>
