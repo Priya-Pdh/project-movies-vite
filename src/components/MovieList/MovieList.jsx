@@ -22,7 +22,8 @@ const MovieList = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.results);
+        console.log("Movies list", data);
+
         setMovies(data.results);
         setLoading(false);
       });
@@ -80,17 +81,24 @@ const MovieList = () => {
           <FadeLoader loading={loading} size={150} />{" "}
         </div>
       ) : null}
-      <div>
-        {movies.map((data, index) => {
+      <div className="container">
+        {/*Destructuring of the movies data*/}
+        {movies.map(({ id, title, release_date, poster_path }) => {
           return (
-            <div key={index}>
-              <p>{data.title}</p>
-              <Link to={`/movieList/${data.id}`}>
-                <LazyImage backdropPath={data.backdrop_path} />
+            <div key={id} className="movie-card">
+              <Link to={`/movieList/${id}`}>
+                <div className="movie-details">
+                  <h1 className="text-margin">{title}</h1>
+                  <p className="text-margin">Released {release_date}</p>
+                </div>
+                <LazyImage
+                  backdropPath={poster_path}
+                />
               </Link>
             </div>
           );
-        })}
+        })
+        }
       </div>
     </>
   );
