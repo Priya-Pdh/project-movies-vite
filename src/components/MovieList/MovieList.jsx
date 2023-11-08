@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FadeLoader } from "react-spinners";
 import "./MovieList.css";
+import "../Dropdown/Dropdown.css";
 import LazyImage from "../LazyImage/LazyImage";
 import Images from "../Images/Images";
 import { Link } from "react-router-dom";
