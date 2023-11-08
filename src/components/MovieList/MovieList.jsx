@@ -18,7 +18,7 @@ const MovieList = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log("Movies list", data);
         setMovies(data.results);
         setLoading(false);
       });
@@ -32,18 +32,21 @@ const MovieList = () => {
         </div>
       ) : null}
       <div>
-        {movies.map((data, index) => {
+        {/*Destructuring of the movies data*/}
+        {movies.map(({ id, title, release_date, backdrop_path }) => {
           return (
-            <div key={index}>
-              <p>{data.title}</p>
- <Link to={`/movieList/${data.id}`}>
-              <LazyImage
-                backdropPath={data.backdrop_path}
-              />
-               </Link>
+            <div key={id}>
+              <h1>{title}</h1>
+              <p>Released {release_date}</p>
+              <Link to={`/movieList/${id}`}>
+                <LazyImage
+                  backdropPath={backdrop_path}
+                />
+              </Link>
             </div>
           );
-        })}
+        })
+        }
       </div>
     </>
   );
