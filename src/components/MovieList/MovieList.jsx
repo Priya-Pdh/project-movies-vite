@@ -89,16 +89,16 @@ const MovieList = () => {
               <Link to={`/movieList/${id}`}>
                 <div className="movie-details">
                   <h1 className="text-margin">{title}</h1>
-                  <p className="text-margin">Released {release_date}</p>
+                  <p className="text-margin">
+                    {selected === "upcoming" ? "Releasing" : "Released"}{" "}
+                    {release_date}
+                  </p>
                 </div>
-                <LazyImage
-                  backdropPath={poster_path}
-                />
+                <LazyImage backdropPath={poster_path} />
               </Link>
             </div>
           );
-        })
-        }
+        })}
       </div>
     </>
   );
