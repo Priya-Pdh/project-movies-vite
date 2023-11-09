@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { IoChevronBackCircleSharp } from 'react-icons/io5';
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import BackButton from "../BackButton/BackButton";
-import './MovieDetails.css';
-
+import "./MovieDetails.css";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -22,7 +20,6 @@ const MovieDetails = () => {
       });
   }, [movieId]);
 
-
   //NOTE FOR MERGING!! I had to change the "movie &&" under the return to be able to do the
   //destructuring, so I had to add this here instead. It should do the same thing though
   if (!movie) {
@@ -30,7 +27,16 @@ const MovieDetails = () => {
   }
 
   //Destructuring of movie data
-  const { title, vote_average, genres, runtime, overview, production_companies, backdrop_path, poster_path } = movie;
+  const {
+    title,
+    vote_average,
+    genres,
+    runtime,
+    overview,
+    production_companies,
+    backdrop_path,
+    poster_path,
+  } = movie;
 
   const bgImg = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
 
@@ -39,63 +45,60 @@ const MovieDetails = () => {
     const hours = Math.floor(runtime / 60);
     const minutes = runtime % 60;
 
-    return { hours, minutes }
-  }
+    return { hours, minutes };
+  };
   const convertMinutes = toHoursAndMinutes(runtime);
 
   return (
     <div>
-     <BackButton />
-      <div className="bg-img" style={{ backgroundImage: `url(${bgImg})`, }}>
+      <BackButton />
+      <div className="bg-img" style={{ backgroundImage: `url(${bgImg})` }}>
         <div className="overlay"></div>
         <div className="movie-content">
-          <img className="cover-img" src={`https://image.tmdb.org/t/p/w342${poster_path}`} />
+          <img
+            className="cover-img"
+            src={`https://image.tmdb.org/t/p/w342${poster_path}`}
+          />
           <div className="rating-container">
             <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
           </div>
           <div className="movie-info">
             <h1>{title}</h1>
-          /*  {genres.map(({ id, name }) => (
-              <button key={id} >{name}</button>
-            ))} */
-              {genres && (
-           
+            {genres && (
               <p>
-                Genre: {genres.map((genre, index, array) => {
-                  if (index === array.length - 1) {
-                    return genre.name;
-                  } else if (index === array.length - 2) {
-                    return `${genre.name} & `;
-                  } else {
-                    return `${genre.name}, `;
-                  }
-                }).join('')}
+                Genre:{" "}
+                {genres
+                  .map((genre, index, array) => {
+                    if (index === array.length - 1) {
+                      return genre.name;
+                    } else if (index === array.length - 2) {
+                      return `${genre.name} & `;
+                    } else {
+                      return `${genre.name}, `;
+                    }
+                  })
+                  .join("")}
               </p>
-          )}
-            
-            <p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>
+            )}
+
+            <p>
+              Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min
+            </p>
             <p>{overview}</p>
-           {production_companies && (
-  <div className="company">
-    <button className="genre">
-      {production_companies.length > 1
-        ? 'Production Companies: '
-        : 'Production Company: '}
-      {production_companies.map((company, index, array) => (
-        <span key={index}>
-          <Link to={`/company/${company.id}`}>{company.name}</Link>
-          {index < array.length - 1 && (index === array.length - 2 ? ' & ' : ', ')}
-        </span>
-      ))}
-    </button>
-  </div>
-)}
-
-
+            {production_companies && (
+              <div className="company">
+                {production_companies.length > 1
+                  ? "Production Companies: "
+                  : "Production Company: "}
+                {production_companies.map((company, index) => (
+                  <button key={index} className="genre">
+                    <Link to={`/company/${company.id}`}>{company.name}</Link>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
-
-
       </div>
     </div>
   );
