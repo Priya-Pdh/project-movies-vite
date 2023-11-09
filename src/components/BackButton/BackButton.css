@@ -1,24 +1,39 @@
 .buttonDiv {
-    display: flex;
-    align-items: center;
-    gap: 0.1px;
-    transition: gap 0.2s;
-  }
-  .buttonDiv:hover {
-    gap: 5px;
-    
-  }
-  .buttonDiv p {
-    color: white;
-    font-weight: bolder;
-  }
+  display: flex;
+  align-items: center;
+  gap: 0.1px;
+  transition: margin-right 0.2s;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.buttonDiv:hover .backIcon {
+  margin-right: 5px;
+  
+}
+
+.buttonDiv p {
+  color: white;
+  font-weight: bolder;
+}
+
+.backButton {
+  border: none;
+}
+
+.backIcon {
+  font-size: 40px;
+  color: white;
+  margin-right: 0; 
+}
+
+/* Mobile responsive */
+@media only screen and (max-width: 450px) {
   .backButton {
-    border: none;
-    background-color: black;
+    width: 20%;
   }
   
-  .backIcon {
-    font-size: 40px;
-    color: white;
-  }
-  
+}

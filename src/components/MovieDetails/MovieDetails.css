@@ -1,3 +1,5 @@
+.movie-details-container {}
+
 .bg-img {
   min-height: 100vh;
   display: flex;
@@ -39,13 +41,6 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.btn-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
 button {
   background-color: rgba(0, 0, 0, 0.2);
   color: #fff;
@@ -54,6 +49,8 @@ button {
   border: white solid 2px;
   font-family: inherit;
   font-weight: bold;
+  margin-top: 10px;
+  margin-right: 20px;
   cursor: pointer;
 }
 
@@ -83,70 +80,9 @@ p {
 }
 .genre, .company {
   color: white;
-
+}
 .rating {
   margin: 0;
   color: black;
   text-shadow: none;
-}
-
-/* tablet RESPONSIVE */
-@media only screen and (max-width: 768px) {}
-
-.overlay {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-}
-
-.movie-content {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* Mobile responsive */
-@media only screen and (max-width: 450px) {
-  .overlay {
-    display: none;
-  }
-
-  .bg-img {
-    background-image: none !important;
-    background-color: black;
-  }
-
-  .movie-content {
-    display: block;
-    padding: 0;
-  }
-
-  .cover-img {
-    width: 100%;
-    border: none;
-  }
-
-  .movie-info {
-    margin: 30px;
-    margin-bottom: 60px;
-  }
-
-  button {
-    padding: 10px 15px;
-    border-radius: 40px;
-  }
-
-  .rating-container {
-    position: relative;
-    float: right;
-    margin-top: -46px;
-
-  }
-
-  h1 {
-    font-size: 32px;
-  }
 }
