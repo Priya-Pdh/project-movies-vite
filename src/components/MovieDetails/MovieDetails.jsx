@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./MovieDetails.css";
+import BackButton from "../BackButton/BackButton";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -42,6 +43,7 @@ const MovieDetails = () => {
 
   return (
     <div>
+     <BackButton />
       <div className="bg-img" style={{ backgroundImage: `url(${bgImg})`, }}>
         <div className="overlay"></div>
         <div className="movie-content">

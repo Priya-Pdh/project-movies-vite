@@ -3,11 +3,9 @@ import { FadeLoader } from "react-spinners";
 import "./MovieList.css";
 import "../Dropdown/Dropdown.css";
 import LazyImage from "../LazyImage/LazyImage";
-import Images from "../Images/Images";
 import { Link } from "react-router-dom";
-
-//Components
 import Dropdown from "../Dropdown/Dropdown";
+
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
