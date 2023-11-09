@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { IoChevronBackCircleSharp } from 'react-icons/io5';
 import './MovieDetails.css';
@@ -36,8 +36,41 @@ const MovieDetails = () => {
           <p>Movies</p>
         </div>
 
-        <h1>{movie.title}</h1>
+        <h1 className="movieTitle">{movie.title}</h1>
         <img src={`https://image.tmdb.org/t/p/w780/${movie.backdrop_path}`} />
+        <div className="moreInfo">
+        {movie.genres && (
+            <div className="genre">
+              <p>
+                Genre: {movie.genres.map((genre, index, array) => {
+                  if (index === array.length - 1) {
+                    return genre.name;
+                  } else if (index === array.length - 2) {
+                    return `${genre.name} & `;
+                  } else {
+                    return `${genre.name}, `;
+                  }
+                }).join('')}
+              </p>
+            </div>
+          )}
+             {movie.production_companies && (
+  <div className="company">
+    <p>
+      {movie.production_companies.length > 1
+        ? 'Production Companies: '
+        : 'Production Company: '}
+      {movie.production_companies.map((company, index, array) => (
+        <span key={index}>
+          <Link to={`/company/${company.id}`}>{company.name}</Link>
+          {index < array.length - 1 && (index === array.length - 2 ? ' & ' : ', ')}
+        </span>
+      ))}
+    </p>
+  </div>
+)}
+
+        </div>
       </>
     )
   );

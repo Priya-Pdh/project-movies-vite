@@ -21,3 +21,9 @@
   font-size: 40px;
   color: white;
 }
+.movieTitle {
+  color: white;
+}
+.genre, .company {
+  color: white;
+}
