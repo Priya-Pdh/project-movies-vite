@@ -1,6 +1,55 @@
 .loading-spinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+}
+
+.movie-card {
+  width: 25%;
+  position: relative;
+  display: flex;
+}
+
+.movie-card a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.movie-card img {
+  width: 100%;
+  overflow: clip;
+
+}
+
+.movie-details {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  opacity: 0;
+  z-index: 10;
+}
+
+.movie-details:hover {
+  background: rgba(0, 0, 0, .75);
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.text-margin {
+  margin: 10px 0px;
+}
