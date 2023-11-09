@@ -1,48 +1,67 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { IoChevronBackCircleSharp } from 'react-icons/io5';
+import BackButton from "../BackButton/BackButton";
 import './MovieDetails.css';
+
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState();
 
-  const apiKey = 'e7d445a3d3b2d973d65584a1210ec5df';
-
-  const navigate = useNavigate();
+  const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`)
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log("Movie Details", data);
         setMovie(data);
       });
   }, [movieId]);
 
-  // Navigate back to the previous page
-  const goBack = () => {
-    navigate(-1);
-  };
+
+  //NOTE FOR MERGING!! I had to change the "movie &&" under the return to be able to do the
+  //destructuring, so I had to add this here instead. It should do the same thing though
+  if (!movie) {
+    return null;
+  }
+
+  //Destructuring of movie data
+  const { title, vote_average, genres, runtime, overview, production_companies, backdrop_path, poster_path } = movie;
+
+  const bgImg = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
+
+  //Function to display runtime in hours and minutes
+  const toHoursAndMinutes = (runtime) => {
+    const hours = Math.floor(runtime / 60);
+    const minutes = runtime % 60;
+
+    return { hours, minutes }
+  }
+  const convertMinutes = toHoursAndMinutes(runtime);
 
   return (
-    movie && (
-      <>
-        <div className="buttonDiv">
-          <button onClick={goBack} className="backButton">
-            <IoChevronBackCircleSharp className="backIcon" />
-          </button>
-          <p>Movies</p>
-        </div>
-
-        <h1 className="movieTitle">{movie.title}</h1>
-        <img src={`https://image.tmdb.org/t/p/w780/${movie.backdrop_path}`} />
-        <div className="moreInfo">
-        {movie.genres && (
-            <div className="genre">
+    <div>
+     <BackButton />
+      <div className="bg-img" style={{ backgroundImage: `url(${bgImg})`, }}>
+        <div className="overlay"></div>
+        <div className="movie-content">
+          <img className="cover-img" src={`https://image.tmdb.org/t/p/w342${poster_path}`} />
+          <div className="rating-container">
+            <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
+          </div>
+          <div className="movie-info">
+            <h1>{title}</h1>
+          /*  {genres.map(({ id, name }) => (
+              <button key={id} >{name}</button>
+            ))} */
+              {genres && (
+           
               <p>
-                Genre: {movie.genres.map((genre, index, array) => {
+                Genre: {genres.map((genre, index, array) => {
                   if (index === array.length - 1) {
                     return genre.name;
                   } else if (index === array.length - 2) {
@@ -52,27 +71,33 @@ const MovieDetails = () => {
                   }
                 }).join('')}
               </p>
-            </div>
           )}
-             {movie.production_companies && (
+            
+            <p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>
+            <p>{overview}</p>
+           {production_companies && (
   <div className="company">
-    <p>
-      {movie.production_companies.length > 1
+    <button className="genre">
+      {production_companies.length > 1
         ? 'Production Companies: '
         : 'Production Company: '}
-      {movie.production_companies.map((company, index, array) => (
+      {production_companies.map((company, index, array) => (
         <span key={index}>
           <Link to={`/company/${company.id}`}>{company.name}</Link>
           {index < array.length - 1 && (index === array.length - 2 ? ' & ' : ', ')}
         </span>
       ))}
-    </p>
+    </button>
   </div>
 )}
 
+
+          </div>
         </div>
-      </>
-    )
+
+
+      </div>
+    </div>
   );
 };
 
