@@ -51,9 +51,11 @@ const MovieDetails = () => {
           </div>
           <div className="movie-info">
             <h1>{title}</h1>
-            {genres.map(({ id, name }) => (
-              <button key={id} className="genre">{name}</button>
-            ))}
+            <div className="btn-container">
+              {genres.map(({ id, name }) => (
+                <button key={id} className="genre">{name}</button>
+              ))}
+            </div>
             <p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>
             <p>{overview}</p>
             {/* {production_companies.map(({ id, name }) => (
