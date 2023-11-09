@@ -1,0 +1,24 @@
+.buttonDiv {
+    display: flex;
+    align-items: center;
+    gap: 0.1px;
+    transition: gap 0.2s;
+  }
+  .buttonDiv:hover {
+    gap: 5px;
+    
+  }
+  .buttonDiv p {
+    color: white;
+    font-weight: bolder;
+  }
+  .backButton {
+    border: none;
+    background-color: black;
+  }
+  
+  .backIcon {
+    font-size: 40px;
+    color: white;
+  }
+  

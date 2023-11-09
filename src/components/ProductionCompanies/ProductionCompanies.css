@@ -1,0 +1,15 @@
+.companyItem {
+    color: white;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+   
+}
+
+.imageDiv {
+    background-color: aliceblue;
+}
+.companyLogo {
+    width: 50vw;
+    height: 50px;
+}

@@ -3,11 +3,9 @@ import { FadeLoader } from "react-spinners";
 import "./MovieList.css";
 import "../Dropdown/Dropdown.css";
 import LazyImage from "../LazyImage/LazyImage";
-import Images from "../Images/Images";
 import { Link } from "react-router-dom";
-
-//Components
 import Dropdown from "../Dropdown/Dropdown";
+
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -89,16 +87,16 @@ const MovieList = () => {
               <Link to={`/movieList/${id}`}>
                 <div className="movie-details">
                   <h1 className="text-margin">{title}</h1>
-                  <p className="text-margin">Released {release_date}</p>
+                  <p className="text-margin">
+                    {selected === "upcoming" ? "Releasing" : "Released"}{" "}
+                    {release_date}
+                  </p>
                 </div>
-                <LazyImage
-                  backdropPath={poster_path}
-                />
+                <LazyImage backdropPath={poster_path} />
               </Link>
             </div>
           );
-        })
-        }
+        })}
       </div>
     </>
   );
