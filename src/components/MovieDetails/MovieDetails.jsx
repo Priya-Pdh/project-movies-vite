@@ -59,9 +59,12 @@ const MovieDetails = () => {
             className="cover-img"
             src={`https://image.tmdb.org/t/p/w342${poster_path}`}
           />
-          <div className="rating-container">
-            <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
-          </div>
+          {vote_average ? (
+            <div className="rating-container">
+              <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
+            </div>
+          ) : null
+          }
           <div className="movie-info">
             <h1>{title}</h1>
             {genres && (
@@ -81,9 +84,7 @@ const MovieDetails = () => {
               </p>
             )}
 
-            <p>
-              Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min
-            </p>
+            {runtime ? (<p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>) : null}
             <p>{overview}</p>
             {production_companies && (
               <div className="company">

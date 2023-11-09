@@ -53,3 +53,11 @@
 .text-margin {
   margin: 10px 0px;
 }
+
+
+/* Mobile responsive */
+@media only screen and (max-width: 450px) {
+  .movie-card {
+    width: 50%;
+  }
+}
