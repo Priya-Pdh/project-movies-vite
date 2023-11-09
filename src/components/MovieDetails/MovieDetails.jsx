@@ -46,15 +46,18 @@ const MovieDetails = () => {
         <div className="overlay"></div>
         <div className="movie-content">
           <img className="cover-img" src={`https://image.tmdb.org/t/p/w342${poster_path}`} />
-          <div className="rating-container">
-            <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
-          </div>
+          {vote_average ? (
+            <div className="rating-container">
+              <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
+            </div>
+          ) : null
+          }
           <div className="movie-info">
             <h1>{title}</h1>
             {genres.map(({ id, name }) => (
               <button key={id} className="genre">{name}</button>
             ))}
-            <p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>
+            {runtime ? (<p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>) : null}
             <p>{overview}</p>
             {/* {production_companies.map(({ id, name }) => (
               <ul key={id}>
