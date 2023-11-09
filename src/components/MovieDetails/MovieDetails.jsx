@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import "./MovieDetails.css";
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { IoChevronBackCircleSharp } from 'react-icons/io5';
 import BackButton from "../BackButton/BackButton";
+import './MovieDetails.css';
+
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -53,18 +55,46 @@ const MovieDetails = () => {
           </div>
           <div className="movie-info">
             <h1>{title}</h1>
-            {genres.map(({ id, name }) => (
-              <button key={id} className="genre">{name}</button>
-            ))}
+          /*  {genres.map(({ id, name }) => (
+              <button key={id} >{name}</button>
+            ))} */
+              {genres && (
+           
+              <p>
+                Genre: {genres.map((genre, index, array) => {
+                  if (index === array.length - 1) {
+                    return genre.name;
+                  } else if (index === array.length - 2) {
+                    return `${genre.name} & `;
+                  } else {
+                    return `${genre.name}, `;
+                  }
+                }).join('')}
+              </p>
+          )}
+            
             <p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>
             <p>{overview}</p>
-            {/* {production_companies.map(({ id, name }) => (
-              <ul key={id}>
-                <li>{name}</li>
-              </ul>
-            ))} */}
+           {production_companies && (
+  <div className="company">
+    <button className="genre">
+      {production_companies.length > 1
+        ? 'Production Companies: '
+        : 'Production Company: '}
+      {production_companies.map((company, index, array) => (
+        <span key={index}>
+          <Link to={`/company/${company.id}`}>{company.name}</Link>
+          {index < array.length - 1 && (index === array.length - 2 ? ' & ' : ', ')}
+        </span>
+      ))}
+    </button>
+  </div>
+)}
+
+
           </div>
         </div>
+
 
       </div>
     </div>

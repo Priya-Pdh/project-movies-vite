@@ -75,6 +75,12 @@ p {
   background-color: #fff;
 }
 
+.movieTitle {
+  color: white;
+}
+.genre, .company {
+  color: white;
+
 .rating {
   margin: 0;
   color: black;
