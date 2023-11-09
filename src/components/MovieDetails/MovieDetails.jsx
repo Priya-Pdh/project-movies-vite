@@ -62,7 +62,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <BackButton />
+      <BackButton label="Movies"/>
       <div className="bg-img" style={{ backgroundImage: `url(${bgImg})` }}>
         <div className="overlay"></div>
         <div className="movie-content">

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import "./BackButton.css";
 
-const BackButton = () => {
+const BackButton = ({label}) => {
   const navigate = useNavigate();
   // Navigate back to the previous page
   const goBack = () => {
@@ -10,10 +10,8 @@ const BackButton = () => {
   };
   return (
     <div className="buttonDiv">
-      <button onClick={goBack} className="backButton">
-        <IoChevronBackCircleSharp className="backIcon" />
-      </button>
-      <p>Movies</p>
+        <IoChevronBackCircleSharp  onClick={goBack} className="backIcon backButton item"  />
+      <p className="item">{label}</p>
     </div>
   );
 };

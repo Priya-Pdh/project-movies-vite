@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./ProductionCompanies.css";
+
 import PageNotFound from "../PageNotFound/PageNotFound";
+import BackButton from "../BackButton/BackButton";
+
 // import LazyImage from "../../LazyImage/LazyImage";
 
 const ProductionCompanies = () => {
@@ -33,43 +36,50 @@ const ProductionCompanies = () => {
   if (!companyData || notFound) {
     return <PageNotFound />;
   }
+
+  const { name, headquarters, origin_country, homepage, logo_path } =
+    companyData;
+
+  const bgLogo = `https://image.tmdb.org/t/p/original/${logo_path}`;
+
   return (
-    <div key={companyData.id}>
-      <h1 className="companyName companyItem">Company: {companyData.name}</h1>
+    companyData && (
+      <>
+        <BackButton label="Movie Details" />
+        <div
+          key={companyData.id}
+          className="companyWrapper logo-img"
+          style={{ backgroundImage: `url(${bgLogo})` }}
+        >
+          <div className="companyDetails">
+            {logo_path && (
+              <div className="imageDiv">
+                <a
+                  href={homepage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link"
+                >
+                  <img
+                    className="companyLogo companyItem"
+                    src={`https://image.tmdb.org/t/p/w780/${logo_path}`}
+                    alt="company_logo"
+                  />
+                </a>
+              </div>
+            )}
+            <h1 className=" companyItem">Company: {name}</h1>
 
-      {companyData.headquarters && (
-        <p className="companyItem">Headquarters: {companyData.headquarters}</p>
-      )}
-
-      {companyData.homepage && (
-        <p className="companyItem">
-          Website:{" "}
-          <a
-            href={companyData.homepage}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {companyData.homepage}
-          </a>
-        </p>
-      )}
-
-      {companyData.origin_country && (
-        <p className="companyItem">
-          Origin Country: {companyData.origin_country}
-        </p>
-      )}
-
-      {companyData.logo_path && (
-        <div className="imageDiv">
-          <img
-            className="companyLogo companyItem"
-            src={`https://image.tmdb.org/t/p/w780/${companyData.logo_path}`}
-            alt="company_logo"
-          />
+            {headquarters && (
+              <p className="companyItem">Headquarters: {headquarters}</p>
+            )}
+            {origin_country && (
+              <p className="companyItem">Origin Country: {origin_country}</p>
+            )}
+          </div>
         </div>
-      )}
-    </div>
+      </>
+    )
   );
 };
 
