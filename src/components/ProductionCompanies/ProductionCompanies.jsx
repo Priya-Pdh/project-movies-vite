@@ -22,7 +22,7 @@ const ProductionCompanies = () => {
   return (
     companyData && (
       <div key={companyData.id}>
-        <BackButton />
+        <BackButton  label="Movie Details"/>
         <h1 className="companyName companyItem">Company: {companyData.name}</h1>
 
         {companyData.headquarters && (
