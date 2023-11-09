@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import "./ProductionCompanies.css";
+import BackButton from "../BackButton/BackButton";
 // import LazyImage from "../../LazyImage/LazyImage";
 
 const ProductionCompanies = () => {
@@ -21,6 +22,7 @@ const ProductionCompanies = () => {
   return (
     companyData && (
       <div key={companyData.id}>
+        <BackButton />
         <h1 className="companyName companyItem">Company: {companyData.name}</h1>
 
         {companyData.headquarters && (

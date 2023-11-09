@@ -10,10 +10,8 @@ const BackButton = () => {
   };
   return (
     <div className="buttonDiv">
-      <button onClick={goBack} className="backButton">
-        <IoChevronBackCircleSharp className="backIcon" />
-      </button>
-      <p>Movies</p>
+        <IoChevronBackCircleSharp  onClick={goBack} className="backIcon backButton item"  />
+      <p className="item">Movies</p>
     </div>
   );
 };
