@@ -29,3 +29,11 @@
   color: white;
   margin-right: 0; 
 }
+
+/* Mobile responsive */
+@media only screen and (max-width: 450px) {
+  .backButton {
+    width: 20%;
+  }
+  
+}
