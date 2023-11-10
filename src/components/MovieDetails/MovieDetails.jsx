@@ -97,19 +97,21 @@ const MovieDetails = () => {
             {production_companies && (
               <div className="company">
                 {production_companies.length > 1
-                  ? "Production Companies: "
-                  : "Production Company: "}
-                {production_companies.map((company, index) => (
-                  <button key={index} className="genre">
-                    <Link to={`/company/${company.id}`}>{company.name}</Link>
-                  </button>
-                ))}
+                  ? (<h2> Production Companies </h2>)
+                  : (<h2>Production Company </h2>)}
+                <div className="btn-container">
+                  {production_companies.map((company, index) => (
+                    <Link key={index} to={`/company/${company.id}`}>
+                      <button>{company.name}</button>
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
