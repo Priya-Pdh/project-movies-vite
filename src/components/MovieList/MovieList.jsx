@@ -12,7 +12,7 @@ const MovieList = () => {
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState("");
 
-  const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
+  const apiKey = import.meta.env.VIT_OPENDB_KEY;
 
   useEffect(() => {
     setLoading(true)

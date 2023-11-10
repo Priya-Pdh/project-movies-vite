@@ -12,7 +12,7 @@ const ProductionCompanies = () => {
   const [notFound, setNotFound] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
+  const apiKey = import.meta.env.VIT_OPENDB_KEY;
   const companyUrl = `https://api.themoviedb.org/3/company/${company_id}?api_key=${apiKey}&language=en-US`;
 
   useEffect(() => {
