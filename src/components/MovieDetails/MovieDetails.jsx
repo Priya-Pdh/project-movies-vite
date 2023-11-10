@@ -17,6 +17,7 @@ const MovieDetails = () => {
   useEffect(() => {
     if (isNaN(movieId)) {
       setNotFound(true);
+      setLoading(false);
       return;
     }
 
@@ -27,6 +28,7 @@ const MovieDetails = () => {
       .then((data) => {
         console.log("Movie Details", data);
         setMovie(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log("Error fetching movie details:", error);
@@ -35,8 +37,11 @@ const MovieDetails = () => {
       });
   }, [movieId]);
 
-  if (!movie || notFound) {
+  if (notFound) {
     return <PageNotFound />;
+  }
+  if (loading || !movie) {
+    return <LoadingSpinner />;
   }
 
   //Destructuring of movie data
@@ -67,7 +72,6 @@ const MovieDetails = () => {
   return (
     <div>
       <BackButton label="Movies" />
-      {/* {loading ? <LoadingSpinner /> : null} */}
       <div className="bg-img" style={{ backgroundImage: `url(${bgImg})` }}>
         <div className="overlay"></div>
         <div className="movie-content">
