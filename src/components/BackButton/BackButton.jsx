@@ -9,8 +9,8 @@ const BackButton = ({label}) => {
     navigate(-1);
   };
   return (
-    <div className="buttonDiv">
-        <IoChevronBackCircleSharp  onClick={goBack} className="backIcon backButton item"  />
+    <div className="buttonDiv" onClick={goBack}>
+        <IoChevronBackCircleSharp  className="backIcon backButton item"  />
       <p className="item">{label}</p>
     </div>
   );
