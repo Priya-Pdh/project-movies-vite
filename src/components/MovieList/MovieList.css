@@ -26,7 +26,6 @@
 .movie-card img {
   width: 100%;
   overflow: clip;
-
 }
 
 .movie-details {
@@ -45,7 +44,7 @@
 }
 
 .movie-details:hover {
-  background: rgba(0, 0, 0, .75);
+  background: rgba(0, 0, 0, 0.75);
   opacity: 1;
   transition: all 0.2s;
 }
@@ -54,9 +53,8 @@
   margin: 10px 0px;
 }
 
-
 /* Mobile responsive */
-@media only screen and (max-width: 450px) {
+@media only screen and (min-width: 360px) and (max-width: 768px) {
   .movie-card {
     width: 50%;
   }
@@ -64,5 +62,30 @@
   .menu {
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+}
+
+/*Mobiles 360px and down*/
+@media only screen and (max-width: 360px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .movie-card {
+    width: 100%;
+  }
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) {
+  .movie-card {
+    width: 33.33%;
+  }
+}
+
+/* (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 820px) {
+  .movie-card {
+    width: 25%;
   }
 }
