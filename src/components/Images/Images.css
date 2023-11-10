@@ -1,7 +1,7 @@
 .loadingImage {
   display: flex;
-  align-items: center; 
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -9,4 +9,51 @@
   bottom: 0;
   z-index: 1;
   color: red;
+}
+
+/* Styles specific to MovieList context */
+.image-container.movie-list {
+  border: none;
+  margin-bottom: 4px;
+}
+
+.image-container.movie-list img {
+  max-width: 100%;
+}
+
+/* Styles specific to MovieDetails context */
+.image-container.movie-details-image {
+  width: fit-content;
+  border: 5px #fff solid !important;
+}
+
+.image-container.movie-details-image img {
+  max-width: 340px;
+}
+
+/* tablet RESPONSIVE */
+@media only screen and (max-width: 768px) {
+  .image-container.movie-details-image {
+    max-width: fit-content;
+  }
+
+  .image-container.movie-details-image img {
+    max-width: 240px;
+  }
+}
+
+/* Mobile responsive */
+@media only screen and (max-width: 450px) {
+  .image-container.movie-details-image {
+    border: none !important;
+  }
+
+  .image-container.movie-details-image img {
+    max-width: 100%;
+  }
+}
+
+/* Common styles for both contexts */
+.image-container {
+  position: relative;
 }

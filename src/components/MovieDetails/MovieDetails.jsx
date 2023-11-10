@@ -72,8 +72,8 @@ const MovieDetails = () => {
         <div className="overlay"></div>
         <div className="movie-content">
           <Images
-            className="cover-img"
-            backdropPath={`https://image.tmdb.org/t/p/w342${poster_path}`}
+            backdropPath={poster_path}
+            context="movie-details-image"
           />
           {vote_average ? (
             <div className="rating-container">

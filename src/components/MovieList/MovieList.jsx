@@ -91,7 +91,7 @@ const MovieList = () => {
                     {release_date}
                   </p>
                 </div>
-                <Images backdropPath={poster_path} />
+                <Images backdropPath={poster_path} context="movie-list" />
               </Link>
             </div>
           );
