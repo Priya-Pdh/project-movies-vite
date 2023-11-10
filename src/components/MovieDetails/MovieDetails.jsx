@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import BackButton from "../BackButton/BackButton";
 import "./MovieDetails.css";
+import Images from "../Images/Images";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState();
+  const [loading, setLoading] = useState(true);
 
   const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
 
@@ -17,6 +20,7 @@ const MovieDetails = () => {
       .then((data) => {
         console.log("Movie Details", data);
         setMovie(data);
+        setLoading(false);
       });
   }, [movieId]);
 
@@ -51,20 +55,20 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <BackButton label="Movies"/>
+      <BackButton label="Movies" />
+      {loading ? <LoadingSpinner /> : null}
       <div className="bg-img" style={{ backgroundImage: `url(${bgImg})` }}>
         <div className="overlay"></div>
         <div className="movie-content">
-          <img
+          <Images
             className="cover-img"
-            src={`https://image.tmdb.org/t/p/w342${poster_path}`}
+            backdropPath={`https://image.tmdb.org/t/p/w342${poster_path}`}
           />
           {vote_average ? (
             <div className="rating-container">
               <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
             </div>
-          ) : null
-          }
+          ) : null}
           <div className="movie-info">
             <h1>{title}</h1>
             {genres && (
@@ -84,7 +88,11 @@ const MovieDetails = () => {
               </p>
             )}
 
-            {runtime ? (<p>Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min</p>) : null}
+            {runtime ? (
+              <p>
+                Playtime: {convertMinutes.hours} h {convertMinutes.minutes} min
+              </p>
+            ) : null}
             <p>{overview}</p>
             {production_companies && (
               <div className="company">
