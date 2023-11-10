@@ -26,12 +26,11 @@ const ProductionCompanies = () => {
       .then((data) => {
         console.log(data);
         setCompanyData(data);
-
       })
       .catch((error) => {
         console.log("Error fetching company details", error);
         setNotFound(true);
-        setLoading(false)
+        setLoading(false);
       });
   }, [company_id]);
 
@@ -43,15 +42,14 @@ const ProductionCompanies = () => {
     companyData;
 
   const bgLogo = `https://image.tmdb.org/t/p/original/${logo_path}`;
-  
 
   return (
     companyData && (
       <>
         <BackButton label="Movie Details" />
-        {loading ? (
+        {/* {loading ? (
        <LoadingSpinner />
-      ) : null}
+      ) : null} */}
         <div
           key={companyData.id}
           className="companyWrapper logo-img"

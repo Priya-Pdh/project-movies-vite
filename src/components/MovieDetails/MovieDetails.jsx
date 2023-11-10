@@ -6,7 +6,6 @@ import PageNotFound from "../../components/PageNotFound/PageNotFound";
 import Images from "../Images/Images";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState();
@@ -33,7 +32,6 @@ const MovieDetails = () => {
         console.log("Error fetching movie details:", error);
         setNotFound(true);
         setLoading(false);
-
       });
   }, [movieId]);
 
@@ -69,20 +67,14 @@ const MovieDetails = () => {
   return (
     <div>
       <BackButton label="Movies" />
-      {loading ? <LoadingSpinner /> : null}
+      {/* {loading ? <LoadingSpinner /> : null} */}
       <div className="bg-img" style={{ backgroundImage: `url(${bgImg})` }}>
         <div className="overlay"></div>
         <div className="movie-content">
           <Images
             className="cover-img"
             backdropPath={`https://image.tmdb.org/t/p/w342${poster_path}`}
-
           />
- /*       src={
-              poster_path
-                ? `https://image.tmdb.org/t/p/w342${poster_path}`
-                : null
-            }*/
           {vote_average ? (
             <div className="rating-container">
               <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
@@ -115,9 +107,11 @@ const MovieDetails = () => {
             <p>{overview}</p>
             {production_companies && (
               <div className="company">
-                {production_companies.length > 1
-                  ? (<h2> Production Companies </h2>)
-                  : (<h2>Production Company </h2>)}
+                {production_companies.length > 1 ? (
+                  <h2> Production Companies </h2>
+                ) : (
+                  <h2>Production Company </h2>
+                )}
                 <div className="btn-container">
                   {production_companies.map((company, index) => (
                     <Link key={index} to={`/company/${company.id}`}>
@@ -130,7 +124,7 @@ const MovieDetails = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
