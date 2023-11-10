@@ -4,13 +4,13 @@ import "./ProductionCompanies.css";
 
 import PageNotFound from "../PageNotFound/PageNotFound";
 import BackButton from "../BackButton/BackButton";
-
-// import LazyImage from "../../LazyImage/LazyImage";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const ProductionCompanies = () => {
   const { company_id } = useParams();
   const [companyData, setCompanyData] = useState();
   const [notFound, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
   const companyUrl = `https://api.themoviedb.org/3/company/${company_id}?api_key=${apiKey}&language=en-US`;
@@ -26,10 +26,12 @@ const ProductionCompanies = () => {
       .then((data) => {
         console.log(data);
         setCompanyData(data);
+
       })
       .catch((error) => {
         console.log("Error fetching company details", error);
         setNotFound(true);
+        setLoading(false)
       });
   }, [company_id]);
 
@@ -41,11 +43,15 @@ const ProductionCompanies = () => {
     companyData;
 
   const bgLogo = `https://image.tmdb.org/t/p/original/${logo_path}`;
+  
 
   return (
     companyData && (
       <>
         <BackButton label="Movie Details" />
+        {loading ? (
+       <LoadingSpinner />
+      ) : null}
         <div
           key={companyData.id}
           className="companyWrapper logo-img"

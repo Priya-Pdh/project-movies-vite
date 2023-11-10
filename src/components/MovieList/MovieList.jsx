@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { FadeLoader } from "react-spinners";
 import "./MovieList.css";
 import "../Dropdown/Dropdown.css";
-import LazyImage from "../LazyImage/LazyImage";
 import { Link } from "react-router-dom";
 import Dropdown from "../Dropdown/Dropdown";
+import Images from "../Images/Images";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 
 const MovieList = () => {
@@ -15,7 +15,9 @@ const MovieList = () => {
   const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
 
   useEffect(() => {
+    setLoading(true)
     fetch(
+     
       `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
     )
       .then((res) => res.json())
@@ -32,6 +34,7 @@ const MovieList = () => {
       .then((res) => res.json())
       .then((data) => {
         setData(data.results);
+        setLoading(false);
       })
       .catch((err) => console.log("Error fetching data", err));
   };
@@ -39,12 +42,14 @@ const MovieList = () => {
   const handleChange = (e) => {
     const value = e.target.value;
     setSelected(value);
+    setLoading(false);
 
     switch (value) {
       case "popular":
         fetchMovies(
           `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`,
           setMovies
+         
         );
         break;
       case "topRated":
@@ -72,12 +77,12 @@ const MovieList = () => {
 
   return (
     <>
-      <Dropdown value={selected} onChange={handleChange} />
 
+      <div className="menu">
+        <Dropdown value={selected} onChange={handleChange} />
+      </div>
       {loading ? (
-        <div className="loading-spinner">
-          <FadeLoader loading={loading} size={150} />{" "}
-        </div>
+       <LoadingSpinner />
       ) : null}
       <div className="container">
         {/*Destructuring of the movies data*/}
@@ -92,7 +97,7 @@ const MovieList = () => {
                     {release_date}
                   </p>
                 </div>
-                <LazyImage backdropPath={poster_path} />
+                <Images backdropPath={poster_path} /> 
               </Link>
             </div>
           );
