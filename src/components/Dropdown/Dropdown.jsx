@@ -1,7 +1,8 @@
 const Dropdown = ({ value, onChange }) => {
   return (
-    <div>
-      <select value={value} onChange={onChange}>
+    <div className="dropdown">
+      <select id="standard-select" value={value} onChange={onChange}>
+        <option value="" disabled selected>Filter by</option>
         <option value="popular">Popular</option>
         <option value="topRated">Top Rated</option>
         <option value="upcoming">Upcoming</option>

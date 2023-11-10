@@ -72,7 +72,9 @@ const MovieList = () => {
 
   return (
     <>
-      <Dropdown value={selected} onChange={handleChange} />
+      <div className="menu">
+        <Dropdown value={selected} onChange={handleChange} />
+      </div>
 
       {loading ? (
         <div className="loading-spinner">

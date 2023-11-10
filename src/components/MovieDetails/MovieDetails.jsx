@@ -51,13 +51,13 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <BackButton label="Movies"/>
+      <BackButton label="Movies" />
       <div className="bg-img" style={{ backgroundImage: `url(${bgImg})` }}>
         <div className="overlay"></div>
         <div className="movie-content">
           <img
             className="cover-img"
-            src={`https://image.tmdb.org/t/p/w342${poster_path}`}
+            src={`https://image.tmdb.org/t/p/w780${poster_path}`}
           />
           {vote_average ? (
             <div className="rating-container">
@@ -89,19 +89,21 @@ const MovieDetails = () => {
             {production_companies && (
               <div className="company">
                 {production_companies.length > 1
-                  ? "Production Companies: "
-                  : "Production Company: "}
-                {production_companies.map((company, index) => (
-                  <button key={index} className="genre">
-                    <Link to={`/company/${company.id}`}>{company.name}</Link>
-                  </button>
-                ))}
+                  ? (<h2> Production Companies </h2>)
+                  : (<h2>Production Company </h2>)}
+                <div className="btn-container">
+                  {production_companies.map((company, index) => (
+                    <Link key={index} to={`/company/${company.id}`}>
+                      <button>{company.name}</button>
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
