@@ -18,14 +18,15 @@ const ProductionCompanies = () => {
   useEffect(() => {
     if (isNaN(company_id)) {
       setNotFound(true);
+      setLoading(false);
       return;
     }
 
     fetch(companyUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCompanyData(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log("Error fetching company details", error);
@@ -34,8 +35,12 @@ const ProductionCompanies = () => {
       });
   }, [company_id]);
 
-  if (!companyData || notFound) {
+  if (notFound) {
     return <PageNotFound />;
+  }
+
+  if (loading || !companyData) {
+    return <LoadingSpinner />;
   }
 
   const { name, headquarters, origin_country, homepage, logo_path } =
@@ -47,9 +52,6 @@ const ProductionCompanies = () => {
     companyData && (
       <>
         <BackButton label="Movie Details" />
-        {/* {loading ? (
-       <LoadingSpinner />
-      ) : null} */}
         <div
           key={companyData.id}
           className="companyWrapper logo-img"

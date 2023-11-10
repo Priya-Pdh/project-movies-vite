@@ -20,8 +20,6 @@ const MovieList = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("Movies list", data);
-
         setMovies(data.results);
         setLoading(false);
       });
