@@ -19,12 +19,6 @@
   z-index: 0;
 }
 
-.cover-img {
-  width: 340px;
-  border: 5px #fff solid;
-  position: relative;
-}
-
 .movie-content {
   display: flex;
   flex-direction: row;
@@ -118,12 +112,6 @@ p {
     align-items: flex-start;
   }
 
-  .cover-img {
-    width: 40%;
-    border: 5px #fff solid;
-    position: relative;
-  }
-
   .movie-info {
     margin-left: 0px;
   }
@@ -143,11 +131,6 @@ p {
   .movie-content {
     display: block;
     padding: 0;
-  }
-
-  .cover-img {
-    width: 100%;
-    border: none;
   }
 
   .movie-info {
