@@ -6,18 +6,16 @@ import Dropdown from "../Dropdown/Dropdown";
 import Images from "../Images/Images";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState("");
 
-  const apiKey = "e7d445a3d3b2d973d65584a1210ec5df";
+  const apiKey = import.meta.env.VITE_OPENDB_KEY;
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     fetch(
-     
       `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
     )
       .then((res) => res.json())
@@ -49,7 +47,6 @@ const MovieList = () => {
         fetchMovies(
           `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`,
           setMovies
-         
         );
         break;
       case "topRated":
@@ -77,13 +74,10 @@ const MovieList = () => {
 
   return (
     <>
-
       <div className="menu">
         <Dropdown value={selected} onChange={handleChange} />
       </div>
-      {loading ? (
-       <LoadingSpinner />
-      ) : null}
+      {loading ? <LoadingSpinner /> : null}
       <div className="container">
         {/*Destructuring of the movies data*/}
         {movies.map(({ id, title, release_date, poster_path }) => {
@@ -97,7 +91,7 @@ const MovieList = () => {
                     {release_date}
                   </p>
                 </div>
-                <Images backdropPath={poster_path} /> 
+                <Images backdropPath={poster_path} />
               </Link>
             </div>
           );
