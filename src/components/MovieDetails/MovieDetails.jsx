@@ -75,10 +75,7 @@ const MovieDetails = () => {
       <div className="bg-img" style={{ backgroundImage: `url(${bgImg})` }}>
         <div className="overlay"></div>
         <div className="movie-content">
-          <Images
-            backdropPath={poster_path}
-            context="movie-details-image"
-          />
+          <Images backdropPath={poster_path} context="movie-details-image" />
           {vote_average ? (
             <div className="rating-container">
               <h2 className="rating">⭐️ {vote_average.toFixed(1)}</h2>
