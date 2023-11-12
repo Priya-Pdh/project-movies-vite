@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: flex-end;
   z-index: -1;
+  position: sticky;
 }
 
 .overlay {
@@ -95,7 +96,6 @@ p {
 
 /* tablet RESPONSIVE */
 @media only screen and (max-width: 768px) {
-
   .overlay {
     height: 100%;
     position: absolute;
@@ -147,7 +147,6 @@ p {
     position: relative;
     float: right;
     margin-top: -35px;
-
   }
 
   h1 {
