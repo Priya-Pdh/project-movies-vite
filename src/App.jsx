@@ -9,9 +9,10 @@ export const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MovieList />} />
+        <Route path="/movieList" element={<MovieList />} />
         <Route path="/movieList/:movieId" element={<MovieDetails />} />
         <Route path="/company/:company_id" element={<ProductionCompanies />} />
-        <Route path="*" element={<PageNotFound />}/>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
