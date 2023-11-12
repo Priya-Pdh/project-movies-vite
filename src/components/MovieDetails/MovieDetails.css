@@ -4,7 +4,6 @@
   background-size: cover;
   flex-direction: column;
   justify-content: flex-end;
-  z-index: -1;
   position: sticky;
 }
 

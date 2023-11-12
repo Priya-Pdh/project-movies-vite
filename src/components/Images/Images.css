@@ -51,3 +51,9 @@
 .image-container {
   position: relative;
 }
+
+@media only screen and (max-height: 1024px) {
+  .image-container.movie-details-image {
+    margin-top: 1rem;
+  }
+}

@@ -43,5 +43,14 @@
   .backButton {
     width: 20%;
   }
+  .buttonDiv {
+    left: 20px;
+  }
+}
 
+/* Mobile responsive */
+@media only screen and (max-width: 912px) {
+  .buttonDiv {
+    left: 35px;
+  }
 }
